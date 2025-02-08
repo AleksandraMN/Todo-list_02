@@ -1,0 +1,14 @@
+{
+  "todos": [
+    {
+      "title": "Полить цветы",
+      "completed": false,
+      "id": 1
+    },
+    {
+      "title": "Убрать снег",
+      "completed": "true",
+      "id": 2
+    }
+  ]
+}

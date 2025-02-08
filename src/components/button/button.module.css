@@ -1,0 +1,15 @@
+
+button {
+	height: 30px;
+	width: 300px;
+	background-color: rgb(79, 238, 79);
+	color: #000;
+	border: 1px solid rgb(7, 17, 7);
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 14px;
+	margin-right: 200px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
