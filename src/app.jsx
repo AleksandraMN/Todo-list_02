@@ -21,6 +21,7 @@ export const App = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [isSorted, setIsSorted] = useState(false);
 
+
 	const refreshTodos = () => setRefreshTodosFlag(!refreshTodosFlag);
 
 	const resetForm = () => {

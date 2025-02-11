@@ -14,11 +14,6 @@
       "title": "Заполнить декларацию",
       "completed": "false",
       "id": 3
-    },
-    {
-      "title": "Помыть кота",
-      "completed": false,
-      "id": 4
     }
   ]
 }

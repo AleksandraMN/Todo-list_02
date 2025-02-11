@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export const useRequestAddTodo = (newTodo, refreshTodos, resetForm) => {
 	const [isCreating, setIsCreating] = useState(false);
+	const [error, setError] = useState(null);
 
 	const requestAddTodo = () => {
 		setIsCreating(true);
@@ -15,11 +16,20 @@ export const useRequestAddTodo = (newTodo, refreshTodos, resetForm) => {
 				completed: false,
 			}),
 		})
-			.then((rawResponse) => rawResponse.json())
+			.then((rawResponse) => {
+				if (!rawResponse.ok) {
+					throw new Error('Ошибка при добавлении дела');
+				}
+			 return rawResponse.json();
+	    })
 			.then((response) => {
 				console.log(`Дело добавлено, ответ сервера:`, response);
 				refreshTodos();
 				resetForm();
+			})
+			.catch((error) => {
+				setError(error.message);
+				console.error('Произошла ошибка:', error);
 			})
 			.finally(() => setIsCreating(false));
 	};
@@ -27,6 +37,7 @@ export const useRequestAddTodo = (newTodo, refreshTodos, resetForm) => {
 	return {
 		requestAddTodo,
 		isCreating,
+		error,
 	};
 };
 

@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export const useRequestDeleteTodo = (value, refreshTodos, resetForm) => {
 	const [isDeleting, setIsDeleting] = useState(false);
+	const [error, setError] = useState(null);
 
 	const requestDeleteTodo = () => {
 		setIsDeleting(true);
@@ -21,6 +22,7 @@ export const useRequestDeleteTodo = (value, refreshTodos, resetForm) => {
 				resetForm();
 			})
 			.catch((error) => {
+				setError(error.message);
 				console.error('Произошла ошибка:', error);
 			})
 			.finally(() => setIsDeleting(false));
@@ -29,5 +31,6 @@ export const useRequestDeleteTodo = (value, refreshTodos, resetForm) => {
 		return {
 		requestDeleteTodo,
 		isDeleting,
+		error,
 		};
 };

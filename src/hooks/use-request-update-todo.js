@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export const useRequestUpdateTodo = (value, newTodo, select, refreshTodos, resetForm) => {
   const [isUpdating, setIsUpdating] = useState(false);
+	const [error, setError] = useState(null);
 
 	const requestUpdateTodo = () => {
 		setIsUpdating(true);
@@ -29,6 +30,7 @@ export const useRequestUpdateTodo = (value, newTodo, select, refreshTodos, reset
 			resetForm();
 		})
 		.catch((error) => {
+			setError(error.message);
 			console.error('Произошла ошибка:', error);
 		})
 		.finally(() => setIsUpdating(false));
@@ -37,6 +39,7 @@ export const useRequestUpdateTodo = (value, newTodo, select, refreshTodos, reset
 	return {
 		requestUpdateTodo,
 		isUpdating,
+		error,
 	};
 };
 
