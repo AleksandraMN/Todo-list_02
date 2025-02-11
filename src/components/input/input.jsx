@@ -3,18 +3,12 @@ import styles from './input.module.css';
 import PropTypes from 'prop-types';
 
 export const Input = (props) => (
-  <input className={styles.input} {...props}>
-    {props.children}
-  </input>
+  <input className={styles.input} {...props} />
 );
 
 Input.propTypes = {
-  children: PropTypes.string,
-	props: PropTypes.oneOfType([
-			PropTypes.number,
-			PropTypes.string,
-			PropTypes.object,
-			PropTypes.array,
-			PropTypes.func,
-		]),
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onChange: PropTypes.func,
 };

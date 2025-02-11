@@ -9,12 +9,7 @@ export const Button = (props) => (
 );
 
 Button.propTypes = {
-	children: PropTypes.string,
-	props: PropTypes.oneOfType([
-		PropTypes.number,
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.array,
-		PropTypes.func,
-  ]),
+	children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };

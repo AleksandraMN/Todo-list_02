@@ -7,8 +7,18 @@
     },
     {
       "title": "Убрать снег",
-      "completed": "true",
+      "completed": "false",
       "id": 2
+    },
+    {
+      "title": "Заполнить декларацию",
+      "completed": "false",
+      "id": 3
+    },
+    {
+      "title": "Помыть кота",
+      "completed": false,
+      "id": 4
     }
   ]
 }

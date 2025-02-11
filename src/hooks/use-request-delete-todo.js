@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-export const useRequestDeleteTodo = (value, refreshTodos, setNewTodo, setSelect, setValue) => {
+export const useRequestDeleteTodo = (value, refreshTodos, resetForm) => {
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	const requestDeleteTodo = () => {
@@ -18,9 +18,7 @@ export const useRequestDeleteTodo = (value, refreshTodos, setNewTodo, setSelect,
 				}
 				console.log('Дело удалено, ответ сервера:', response);
 				refreshTodos();
-				setNewTodo('');
-				setSelect('');
-				setValue('');
+				resetForm();
 			})
 			.catch((error) => {
 				console.error('Произошла ошибка:', error);

@@ -11,7 +11,7 @@ import {
 	useRequestGetTodo,
 	useRequestUpdateTodo,
 } from './hooks';
-import { handleOnChange, onChange } from './handlers';
+import { onChange } from './handlers';
 
 export const App = () => {
 	const [newTodo, setNewTodo] = useState('');
@@ -23,49 +23,48 @@ export const App = () => {
 
 	const refreshTodos = () => setRefreshTodosFlag(!refreshTodosFlag);
 
+	const resetForm = () => {
+		setNewTodo('');
+		setSelect('');
+		setValue('');
+	};
+
 	const { todos, isLoading, error } = useRequestGetTodo(refreshTodosFlag);
 	const { requestAddTodo, isCreating } = useRequestAddTodo(
 		newTodo,
 		refreshTodos,
-		setNewTodo,
-		setSelect,
-		setValue,
+		resetForm,
 	);
 	const { requestUpdateTodo, isUpdating } = useRequestUpdateTodo(
 		value,
 		newTodo,
 		select,
 		refreshTodos,
-		setNewTodo,
-		setSelect,
-		setValue,
+		resetForm,
 	);
 	const { requestDeleteTodo, isDeleting } = useRequestDeleteTodo(
 		value,
 		refreshTodos,
-		setNewTodo,
-		setSelect,
-		setValue,
+		resetForm,
 	);
 
 	const handleSearch = debounceRaf((term) => {
 		setSearchTerm(term);
 	}, 300);
 
-	const filteredTodos = todos.filter((todo) =>
+	const filteredTodos = todos ? todos.filter((todo) =>
 		todo.title.toLowerCase().includes(searchTerm.toLowerCase()),
-	);
+	) : [];
 	const sortedTodos = isSorted
 		? [...filteredTodos].sort((a, b) => a.title.localeCompare(b.title))
 		: filteredTodos;
 
 	return (
 		<div className={styles.app}>
-			
+
 			<TodoList
 				isLoading={isLoading}
 				sortedTodos={sortedTodos}
-				todos={todos}
 				error={error}
 			/>
 
@@ -80,7 +79,7 @@ export const App = () => {
 				placeholder='Введите номер дела для обновления или удаления.'
 				type="number"
 				value={value}
-				onChange={({ target }) => handleOnChange({ target }, setValue)}
+				onChange={({ target }) => onChange({ target }, setValue)}
 			/>
 
 			<SelectModule setSelect={setSelect} />

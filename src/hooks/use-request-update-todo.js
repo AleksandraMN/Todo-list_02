@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useRequestUpdateTodo = (value, newTodo, select, refreshTodos, setNewTodo, setSelect, setValue) => {
+export const useRequestUpdateTodo = (value, newTodo, select, refreshTodos, resetForm) => {
   const [isUpdating, setIsUpdating] = useState(false);
 
 	const requestUpdateTodo = () => {
@@ -26,9 +26,7 @@ export const useRequestUpdateTodo = (value, newTodo, select, refreshTodos, setNe
 		.then((response) => {
 			console.log(`Дело обновлено, ответ сервера:`, response);
 			refreshTodos();
-			setNewTodo('');
-			setSelect('');
-			setValue('');
+			resetForm();
 		})
 		.catch((error) => {
 			console.error('Произошла ошибка:', error);

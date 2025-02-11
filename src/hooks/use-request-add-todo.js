@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useRequestAddTodo = (newTodo, refreshTodos, setNewTodo, setSelect, setValue) => {
+export const useRequestAddTodo = (newTodo, refreshTodos, resetForm) => {
 	const [isCreating, setIsCreating] = useState(false);
 
 	const requestAddTodo = () => {
@@ -19,9 +19,7 @@ export const useRequestAddTodo = (newTodo, refreshTodos, setNewTodo, setSelect, 
 			.then((response) => {
 				console.log(`Дело добавлено, ответ сервера:`, response);
 				refreshTodos();
-				setNewTodo('');
-				setSelect('');
-				setValue('');
+				resetForm();
 			})
 			.finally(() => setIsCreating(false));
 	};

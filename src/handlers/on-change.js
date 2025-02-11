@@ -1,5 +1,7 @@
 
-export const onChange = ({ target }, setNewTodo) => {
-	setNewTodo(target.value);
+export const onChange = ({ target }, setState) => {
+	if (target && typeof setState === 'function') {
+    setState(target.value);
+  }
 };
 
